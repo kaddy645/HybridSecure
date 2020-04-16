@@ -3,9 +3,9 @@
  */
 
 import { AppRegistry } from 'react-native';
-import App from './App';
+import HybridTest from './HybridTest';
 import { name as appName } from './app.json';
 
-AppRegistry.registerComponent(appName, () => App);
+AppRegistry.registerComponent(appName, () => HybridTest);
 
-export default SecureToast;
+export default HybridTest;

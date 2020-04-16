@@ -11,11 +11,11 @@ import {
 } from "react-native";
 import ContactList from './components/Contactlist';
 
-//import RemoteContactList from 'https://kartik.bitbucket..io/components/Contactlist';
+
 
 import Geolocation from '@react-native-community/geolocation';
 
-export default class App extends Component {
+export default class HybridTest extends Component {
     state = {
         location: null,
         coords: {},

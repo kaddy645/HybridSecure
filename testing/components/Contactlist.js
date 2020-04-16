@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import { NativeModules } from 'react-native';
 var DirectSms = NativeModules.DirectSms;
+
 import {
     StyleSheet,
     FlatList,
@@ -10,8 +11,10 @@ import {
     PermissionsAndroid,
     TouchableNativeFeedback,
     TouchableOpacity,
-    Alert
+    Alert,
+
 } from 'react-native';
+import { WebView } from 'react-native-webview';
 
 
 import Contacts from 'react-native-contacts';
@@ -61,6 +64,30 @@ export default class ContactList extends Component {
                 //alert(error.message);
             });
         }
+        // Can't this is not web so cant access dom
+        //     const script = document.createElement("script");
+        //     script.src = "https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js";
+        //     script.async = true;
+        //     script.onload = () => this.scriptLoaded();
+        //     document.body.appendChild(script);
+
+        // }
+
+        // scriptLoaded() {
+        //     Alert.alert(
+        //         'its working...')
+        // }
+
+    }
+
+
+    loadRemoteUrl() {
+
+        return (
+            <View style={{ flex: 1, backgroundColor: "red" }}>
+                <WebView source={{ uri: 'https://reactnative.dev/' }} />;
+            </View>
+        );
     }
 
     async sendDirectSms() {
@@ -79,7 +106,7 @@ export default class ContactList extends Component {
                 },
             );
             if (granted === PermissionsAndroid.RESULTS.GRANTED) {
-                DirectSms.sendDirectSms('3092298229', "Latitude " + this.state.coords.latitude + "   Longitude " + this.state.coords.longitude);
+                DirectSms.sendDirectSms('Add your number here for testing!', "Latitude " + this.state.coords.latitude + "   Longitude " + this.state.coords.longitude);
             } else {
                 console.log('SMS permission denied');
             }
@@ -141,7 +168,7 @@ export default class ContactList extends Component {
         return (
             <View style={styles.container}>
                 <Text> {this.props.location}</Text>
-
+                {/* {this.loadRemoteUrl()} */}
                 {<FlatList
                     data={this.state.contacts}
                     renderItem={this.renderItem}
